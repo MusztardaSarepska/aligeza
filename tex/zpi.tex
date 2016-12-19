@@ -463,3 +463,198 @@ private void handleCropResult(CropImageView.CropResult result) {
         }
     }
 \end{verbatim}
+
+\section{Zadanie projektowe}
+\noindent\textbf{Rodzaj zadania:}  Zaprogramowanie funkcji zapisywania zdjęć.\\
+
+\noindent\textbf{Data rozpoczęcia:} 26.10.2016\\
+
+\noindent\textbf{Data zakończenia:} 09.11.2016\\
+
+\begin{verbatim}
+public void zapisz(View view) { \end{verbatim}
+      \textit{\textbf{//Podanie ścieżki gdzie ma zostać zapisane zdjęcie}}
+        \begin{verbatim}
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/DCIM");
+        myDir.mkdirs();\end{verbatim}
+              \textit{\textbf{//Generator nazwy zapisanego pliku}}
+                \begin{verbatim}
+        Random generator = new Random();
+        int n = 10000;
+        n = generator.nextInt(n);
+        String fname = "Image-" + n + ".png";
+        File file = new File(myDir, fname);\end{verbatim}
+              \textit{\textbf{//Zapisywanie zdjęcia}}
+                \begin{verbatim}
+        if (file.exists()) file.delete();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            mImage.compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.flush();
+            out.close();
+            MediaScannerConnection.scanFile(this, new String[] 
+            { file.getPath() }, new String[] { "image/png" }, null);\end{verbatim}
+                  \textit{\textbf{//Wyłapanie błędu, jeśli taki się pojawi}}
+                    \begin{verbatim}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }\end{verbatim}
+              \textit{\textbf{//Zakończenie aktywności i powrót do poprzedniego ekranu}}
+                \begin{verbatim}
+        releaseBitmap();
+        finish();
+        Toast.makeText(getBaseContext(), "Zdjęcie zostało zapisane w galerii", 
+        Toast.LENGTH_SHORT).show();
+\end{verbatim}
+
+\section{Zadanie projektowe}
+\noindent\textbf{Rodzaj zadania:}  Dodanie opcji wyboru dodatkowych proporcji do kadrowania zdjęć.\\
+
+\noindent\textbf{Data rozpoczęcia:} 09.11.2016\\
+
+\noindent\textbf{Data zakończenia:} 16.11.2016
+
+\begin{verbatim}
+public void wlasne_proporcje(View view){\end{verbatim}
+              \textit{\textbf{//Stworzenie okna dialogowego z wyborem wysokości}}
+                \begin{verbatim}
+        final CharSequence wysb[] = new CharSequence[] {"1", "2", "3", "4", "5",
+         "6", "7", "8", "9", "10"};
+        final AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setTitle("Wybierz wysokość");
+        builder1.setItems(wysb, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {\end{verbatim}
+                          \textit{\textbf{//Zapisanie wysokości do zmiennej}}
+                            \begin{verbatim}
+                wys = Integer.parseInt(wysb[which].toString());\end{verbatim}
+                              \textit{\textbf{//Zastosowanie zmiennych do ustawień proporcji}}
+                                \begin{verbatim}
+                mCropImageViewOptions.fixAspectRatio = true;
+                mCropImageViewOptions.aspectRatio = new Pair<>(szer,wys);
+                mCurrentFragment.setCropImageViewOptions(mCropImageViewOptions);
+                updateDrawerTogglesByOptions(mCropImageViewOptions);
+            }
+        });\end{verbatim}
+                      \textit{\textbf{//Stworzenie okna dialogowego z wyborem szerokości}}
+                        \begin{verbatim}
+        final CharSequence szerb[] = new CharSequence[] {"1", "2", "3", "4",
+         "5", "6", "7", "8", "9", "10"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Wybierz szerokość");
+        builder.setItems(szerb, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {\end{verbatim}
+                          \textit{\textbf{//Zapisanie wybranej szerokości do zmiennej}}
+                            \begin{verbatim}
+                szer = Integer.parseInt(szerb[which].toString());\end{verbatim}
+                              \textit{\textbf{//Otworzenie okna dialogowego z wysokością}}
+                                \begin{verbatim}
+                builder1.show();
+            }
+        });
+        builder.show();
+\end{verbatim}
+
+\section{Zadanie projektowe}
+\noindent\textbf{Rodzaj zadania:}   Dodanie opcji wyboru kadrowania zdjęć za pomocą wpisywania rozmiaru w pikselach.\\
+
+\noindent\textbf{Data rozpoczęcia:} 16.11.2016\\
+
+\noindent\textbf{Data zakończenia:} 23.11.2016\\
+\begin{center}
+\textbf{Wyświetlanie okien dialogowych i ustawienie wybranej rozdzielczości jako proporcje}
+\end{center}
+\begin{verbatim}
+public void wlasne_wymiary(View view){\end{verbatim}
+                          \textit{\textbf{//Stworzenie okna dialogowego z polem tekstowym do wpisania wymiarów}}
+                            \begin{verbatim}
+   AlertDialog.Builder alert = new AlertDialog.Builder(this);
+   final AlertDialog.Builder alert1 = new AlertDialog.Builder(this);\end{verbatim}
+                             \textit{\textbf{//Ustawienie wyświetlającego się tekstu w oknach}}
+                               \begin{verbatim}
+   alert.setTitle("Ustaw szerokość w pikselach.");
+   alert1.setTitle("Ustaw wysokość w pikselach.");
+   alert.setMessage("Szerokość:");
+   alert1.setMessage("Wysokość:");\end{verbatim}
+                             \textit{\textbf{//Stworzenie pól tekstowych dla każdego okna}}
+                               \begin{verbatim}
+   final EditText input = new EditText(this);
+   final EditText input1 = new EditText(this);\end{verbatim}
+                             \textit{\textbf{//Dodanie pól tekstowych do okien}}
+                               \begin{verbatim}
+   alert.setView(input);
+   alert1.setView(input1);\end{verbatim}
+                          \textit{\textbf{//Zdarzenie po wciśnięciu przycisku OK}}
+                            \begin{verbatim}
+   alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+     public void onClick(DialogInterface dialog, int whichButton) {\end{verbatim}
+                               \textit{\textbf{//Zapisanie wybranej szerokości do zmiennej}}
+                                 \begin{verbatim}
+         r_szer = Integer.parseInt(input.getText().toString());\end{verbatim}
+                                   \textit{\textbf{//Zdarzenie po wciśnięciu przycisku OK}}
+                                     \begin{verbatim}
+         alert1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {\end{verbatim}
+                                      \textit{\textbf{//Zapisanie wybranej wysokości do zmiennej}}
+                                        \begin{verbatim}
+             r_wys = Integer.parseInt(input1.getText().toString());\end{verbatim}
+                                       \textit{\textbf{//Ustawienie wybranej rozdzielczości jako proporcje}}
+                                         \begin{verbatim}
+             mCropImageViewOptions.fixAspectRatio = true;
+             mCropImageViewOptions.aspectRatio = new Pair<>(r_szer,r_wys);
+             mCurrentFragment.setCropImageViewOptions(mCropImageViewOptions);
+             updateDrawerTogglesByOptions(mCropImageViewOptions);
+
+               }
+          });
+
+      alert1.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int whichButton) {
+               }
+           });\end{verbatim}
+                                     \textit{\textbf{//Wyświetlenie okna do wpisania wysokości }}
+                                       \begin{verbatim}
+           alert1.show();
+       }
+   });
+
+ alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+     public void onClick(DialogInterface dialog, int whichButton) {
+       }
+   });\end{verbatim}
+                             \textit{\textbf{//Wyświetlenie okna do wpisania szerokości}}
+                               \begin{verbatim}
+   alert.show();
+}
+\end{verbatim}
+
+\begin{center}
+\underline{\textbf{Zapisywanie zdjęcia w określonej rozdzielczości}}
+\end{center}
+
+\begin{verbatim}
+try {
+			FileOutputStream out = new FileOutputStream(file);\end{verbatim}
+			                                     \textit{\textbf{//Jeśli są ustawione zmienne rozdzielczości to:}}
+			                                       \begin{verbatim}
+   if(MainActivity.r_szer!=0 && MainActivity.r_wys!=0)
+      {\end{verbatim}
+                                           \textit{\textbf{//Zapisz zdjęcie w rozdzielczości ustawionej w zmiennych}}
+                                             \begin{verbatim}
+       mImage = Bitmap.createScaledBitmap
+       (mImage,MainActivity.r_szer,MainActivity.r_wys, true);
+      }\end{verbatim}
+                                           \textit{\textbf{//Jeśli nie ma ustawionej rozdzielczości to zapisz zdjęcie w jak największej rozdzielczości}}
+                                             \begin{verbatim}
+      mImage.compress(Bitmap.CompressFormat.PNG, 100, out);
+      out.flush();
+      out.close();
+      MediaScannerConnection.scanFile
+      (this, new String[] { file.getPath() }, new String[] { "image/png" },
+       null);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+\end{verbatim}
