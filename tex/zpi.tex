@@ -658,3 +658,252 @@ try {
          e.printStackTrace();
       }
 \end{verbatim}
+
+\section{Zadanie projektowe}
+\noindent\textbf{Rodzaj zadania:}   Skonfigurowanie przycisku menu w oknie startowym.\\
+
+\noindent\textbf{Data rozpoczęcia:} 23.11.2016\\
+
+\noindent\textbf{Data zakończenia:} 30.11.2016\\
+
+\begin{center}
+\underline{\textbf{Stworzenie przycisku oraz informacji}}
+\end{center}
+
+\begin{verbatim}
+<FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:weightSum="1"
+                android:layout_marginBottom="0dp">\end{verbatim}
+                                                           \textit{\textbf{//Przycisk}}
+                                                             \begin{verbatim}
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_weight="3.30"
+                    android:background="@drawable/menuic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:onClick="openDrawer"/>\end{verbatim}
+                                                               \textit{\textbf{//Informacja}}
+                                                                 \begin{verbatim}
+                <TextView
+                    android:text="Otwórz menu i ustaw proporcje lub 
+															                    wymiary zdjęcia"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView3"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_width="245dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="18sp"
+                    android:layout_weight="0.72" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </FrameLayout>
+\end{verbatim}
+
+\begin{center}
+\underline{\textbf{Zaprogramowanie przycisku}}\\
+\end{center}
+
+\begin{verbatim}
+mButton1 = (Button) findViewById(R.id.button2);\end{verbatim}
+                                                               \textit{\textbf{//Stworzenie funkcji nasłuchującej}}
+                                                                 \begin{verbatim}
+        mButton1.setOnClickListener(new View.OnClickListener() {\end{verbatim}
+                                                                       \textit{\textbf{//Gdy naciśniemy przycisk to:}}
+                                                                         \begin{verbatim}
+            @Override
+            public void onClick(View view) {\end{verbatim}
+                                                                           \textit{\textbf{//Otwórz menu}}
+                                                                             \begin{verbatim}
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+\end{verbatim}
+
+\section{Zadanie projektowe}
+\noindent\textbf{Rodzaj zadania:}   Dodanie funkcji wyświetlania bieżących ustawień aplikacji (proporcje, rozdzielczość).\\
+
+\noindent\textbf{Data rozpoczęcia:} 30.11.2016\\
+
+\noindent\textbf{Data zakończenia:} 07.12.2016\\
+
+\begin{center}
+\underline{\textbf{Stworzenie pola w którym będzie wyświetlana informacja}}
+\end{center}
+
+\begin{verbatim}
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/wyswietl_infow"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="#1f1f1f"
+            android:textColor="#ffffff"
+            android:padding="5dp" />
+
+    </LinearLayout>
+\end{verbatim}
+
+\begin{center}
+\underline{\textbf{Zaprogramowanie wyświetlania informacji}}
+\end{center}
+
+
+\textit{\textbf{//Podczas uruchamiana aplikacji}}
+\begin{verbatim}
+TextView infow = (TextView)findViewById(R.id.wyswietl_infow);
+infow.setText("Nie ustawiono wymiarów lub proporcji");
+\end{verbatim}
+
+\textit{\textbf{//Podczas ustawienia rozdzielczości}}
+\begin{verbatim}
+TextView infow = (TextView)findViewById(R.id.wyswietl_infow);
+infow.setText("Ustawiono rozdzielczość: " + r_szer + "px  x  " + r_wys + "px");
+\end{verbatim}
+
+\textit{\textbf{//Podczas ustawienia proporcji}}
+\begin{verbatim}
+TextView infow = (TextView)findViewById(R.id.wyswietl_infow);
+infow.setText("Ustawiono proporcje: " + szer + " x " + wys);
+\end{verbatim}
+
+\section{Zadanie projektowe}
+\noindent\textbf{Rodzaj zadania:}   Dodanie przycisku odpowiedzialnego za otwarcie galerii po skadrowaniu zdjęcia.\\
+
+\noindent\textbf{Data rozpoczęcia:} 7.11.2016\\
+
+\noindent\textbf{Data zakończenia:} 14.12.2016\\
+
+\begin{center}
+\underline{\textbf{Stworzenie przycisku}}
+\end{center}
+
+\begin{verbatim}
+<Button
+                    android:text="Otwórz Galerię"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button"\end{verbatim}
+                                                                                               \textit{\textbf{//Przycisk domyślnie jest niewidoczny.}}\begin{verbatim}
+                    android:visibility="invisible"
+                    
+                    android:enabled="true"\end{verbatim}
+                                                                                                                   \textit{\textbf{//Gdy przycisk zostanie wciśnięty wywołaj następującą funkcję.}}
+                                                                                                                     \begin{verbatim}
+                    android:onClick="butt_galeria"
+                    
+                    android:layout_weight="3.30"
+                    android:layout_marginTop="15dp" />
+\end{verbatim}
+
+\begin{center}
+\underline{\textbf{Zaprogramowanie przycisku}}
+\end{center}
+
+\begin{verbatim}
+
+btnOne = (Button) findViewById(R.id.button);\end{verbatim}
+                                                                                               \textit{\textbf{//Jeśli zdjęcie zostało skadrowane:}}
+                                                                                                 \begin{verbatim}
+        if(CropResultActivity.czy_gal==true){\end{verbatim}
+                                                                                                       \textit{\textbf{//To ustaw przycisk jako widoczny.}}
+                                                                                                         \begin{verbatim}
+            btnOne.setVisibility(View.VISIBLE);
+        }
+        
+        \end{verbatim}
+                                                                                                       \textit{\textbf{//Funkcja która zostanie wywołana podczas kliknięcia przycisku.}}
+                                                                                                         \begin{verbatim}
+ public void butt_galeria(View view){\end{verbatim}
+                                                                                                \textit{\textbf{//Otwórz galerię.}}
+                                                                                                  \begin{verbatim}
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
+                "content://media/internal/images/media"));
+        startActivity(intent);
+    }
+\end{verbatim}
+
+\section{Zadanie projektowe}
+\noindent\textbf{Rodzaj zadania:}   Stworzenie strony internetowej do pobrania aplikacji. \\
+
+\noindent\textbf{Data rozpoczęcia:} 14.11.2016\\
+
+\noindent\textbf{Data zakończenia:} 21.12.2016\\
+
+Aby aplikacja była dostępna dla wszystkich do pobrania, stworzyliśmy stronę internetową, która działa na bezpłatnym hostingu. \\
+
+Na stronę może wejść każdy i pobrać aplikację.\\
+
+Strona znajduje się pod adresem: \textbf{http://mycrop.byethost16.com/}\\
+
+\begin{center}
+\underline{\textbf{Kod źródłowy strony internetowej}}
+\end{center}
+
+\begin{verbatim}
+<html>
+  <head>
+    <title>MyCrop</title>
+    <style>
+      body{width: 100%;height: 100%;position: relative;
+	          background-color: #dfdfdf;}
+      .kadrowanie{position: absolute;width: 300px; height: 200px; top: 50%;
+                 left: 50%; margin-left: -150px;
+                 margin-top: -100px; font-size: 24px;text-align: center;
+                 color: black;font-family: Raleway;background-color: white;
+                 text-align: center;-moz-box-shadow: 3px 3px 5px 5px #ccc;
+                 -webkit-box-shadow: 3px 3px 5px 5px #ccc;
+                 box-shadow: 3px 3px 5px 5px #ccc;}
+      .text{padding: 10px;border-bottom: 1px solid black;}
+      .wersja{font-size: 16px;padding-top: 30px;}
+      .button{margin-top: 5px;width: 200px; height: 50px;margin-left: auto;
+             margin-right: auto;
+             background-color: #afafaf;border: none;border-radius: 50px;
+             width: 200px;font-family: Oswald; font-size: 24px;
+             transition: 0.1s;}
+      .button:hover{background-color: #dfdfdf;cursor: pointer;transition: 0.1s;}
+      .button:focus{outline: none;}
+      a{color: black;text-decoration: none;}
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" 
+    rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <div class="kadrowanie">
+      <div class="text">
+        MyCrop
+      </div>
+      <div class="wersja">
+        v 1.0 | 19.12.2016
+      </div>
+      <button class="button"><a href="my-crop.apk" download>Pobierz teraz!</a>
+      </button>
+    </div>
+  </body>
+</html>
+
+\end{verbatim}
