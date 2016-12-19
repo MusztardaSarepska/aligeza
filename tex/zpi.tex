@@ -309,26 +309,72 @@ Aplikacja kadrowanie została stworzona z myślą o szybkim i wygodnym kadrowani
 \end{itemize}
 
 \section{Zadanie projektowe}
-\noindent\textbf{Rodzaj zadania:} Przygotowanie interfejsu aplikacji w środowisku programistycznym Android Studio tj. ekran powitalny aplikacji oraz ekran z funkcją wczytywania zdjęć\\
+\noindent\textbf{Rodzaj zadania:}  Przygotowanie interfejsu aplikacji.\\
 
-\noindent\textbf{Data rozpoczęcia:} 2016-10-05\\
+\noindent\textbf{Data rozpoczęcia:} 2016-10-19\\
 
-\noindent\textbf{Data zakończenia:} 2016-10-12\\
+\noindent\textbf{Data zakończenia:} 2016-10-26\\
+\\
 
-\textbf{Android Studio}  to środowisko programistyczne (IDE) stworzone przez Google na bazie IntelliJ, które kierowane jest do developerów aplikacji na Androida. Pozwala ono wygodnie projektować, tworzyć i debugować własne programy na najpopularniejszą obecnie platformę systemową dla urządzeń mobilnych. Oprogramowanie oferuje podobne możliwości co środowisko Eclipse z zainstalowaną wtyczką ADT, jednak jest ono znacznie prostsze i bardziej intuicyjne w szczególności dla początkujących programistów. Przejęło ono wszystkie najlepsze rozwiązania znane użytkownikom IntelliJ, oferując narzędzie zoptymalizowane w dużym stopniu do wygodnej pracy z kodem źródłowym. Decydując się na korzystanie z Android Studio użytkownik otrzymuje środowisko programistyczne z przejrzystym i konfigurowalnym interfejsem graficznym, nie wspominając o funkcji kolorowania składni czy mechanizmie zakładek, pozwalającym na pracę z wieloma plikami jednocześnie.\\
 
-W środowisku Android Studio z pewnością odnajdą się zarówno początkujący programiści, jak również ci bardziej zaawansowani. Twórcy postarali się, aby poza samym narzędziem do pisania kodu developerzy znaleźli w nim także inne, przydatne podczas codziennej pracy funkcje i narzędzia. W tym miejscu wspomnieć należy m.in. o debugerze, liście ToDo, pozwalającej organizować zadania do wykonania w obrębie danego projektu czy mechanizmowi wirtualnych urządzeń do testowania tworzonych aplikacji.\\
+\begin{verbatim}
+<android.support.v4.widget.DrawerLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.theartofdev.edmodo.cropper.sample.MainActivity">
+    \end{verbatim}
+    \begin{center}
+    \centering\underline{\textbf{Wysuwane menu}}
+    \end{center}
+    \begin{verbatim}
+    <ScrollView
+        android:id="@+id/navigation_drawer"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#dfdfdf"
+        android:orientation="vertical">
 
-Poza wspomnianymi funkcjami w oprogramowaniu znajdziemy również wiele innych, mniejszych, ale niemniej użytecznych funkcji jak chociażby możliwość testowania wyglądu i zachowania interfejsu aplikacji w różnych rozdzielczościach czy orientacjach ekranu bez konieczności kompilacji oraz uruchamiania całego projektu. Pomimo, iż Android Studio znajduje się obecnie we wczesnej fazie rozwoju to pracuje ono stabilnie i wydajnie.
+        <LinearLayout
+            android:layout_width="@dimen/navigation_drawer_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="#dfdfdf"
+            android:orientation="vertical"
+            android:padding="12dp">
+\end{verbatim}
+\begin{center}
+\underline{\textbf{Opcja: Wczytaj zdjęcie}}
+\end{center}
+\begin{verbatim}
+            <TextView
+                android:id="@+id/drawer_option_load"
+                style="@style/Cropper.Widget.Drawer.Option.TextView"
+                android:onClick="onDrawerOptionClicked"
+                android:text="@string/main_drawer_load"
+                android:textColor="@android:color/black"
+                android:textColorHighlight="@android:color/darker_gray"
+                 />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.v4.widget.DrawerLayout>
+
+\end{verbatim}
 
 \chapter{Zadania wspólne}
 
 \section{Zadanie projektowe}
 \noindent\textbf{Rodzaj zadania:}  Zaprogramowanie w aplikacji funkcji wczytywania i przycinania zdjęć.\\
 
-\noindent\textbf{Data rozpoczęcia:} 2016-10-19\\
+\noindent\textbf{Data rozpoczęcia:} 2016-10-26\\
 
-\noindent\textbf{Data zakończenia:} 2016-11-26\\
+\noindent\textbf{Data zakończenia:} 2016-11-09\\
 
 \begin{center}
 \underline{\textbf{Funkcja wczytywania zdjęć:}}
