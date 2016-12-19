@@ -405,11 +405,63 @@ Aplikacja kadrowanie została stworzona z myślą o szybkim i wygodnym kadrowani
 \end{itemize}
 
 \section{Zadanie projektowe}
-\noindent\textbf{Rodzaj zadania:} \\
+\noindent\textbf{Rodzaj zadania:}  Przygotowanie interfejsu aplikacji.\\
 
-\noindent\textbf{Data rozpoczęcia:} \\
+\noindent\textbf{Data rozpoczęcia:} 2016-10-19\\
 
-\noindent\textbf{Data zakończenia:} \\
+\noindent\textbf{Data zakończenia:} 2016-10-26\\
+\\
+
+
+\begin{verbatim}
+<android.support.v4.widget.DrawerLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.theartofdev.edmodo.cropper.sample.MainActivity">
+    \end{verbatim}
+    \begin{center}
+    \centering\underline{\textbf{Wysuwane menu}}
+    \end{center}
+    \begin{verbatim}
+    <ScrollView
+        android:id="@+id/navigation_drawer"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#dfdfdf"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="@dimen/navigation_drawer_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="#dfdfdf"
+            android:orientation="vertical"
+            android:padding="12dp">
+\end{verbatim}
+\begin{center}
+\underline{\textbf{Opcja: Wczytaj zdjęcie}}
+\end{center}
+\begin{verbatim}
+            <TextView
+                android:id="@+id/drawer_option_load"
+                style="@style/Cropper.Widget.Drawer.Option.TextView"
+                android:onClick="onDrawerOptionClicked"
+                android:text="@string/main_drawer_load"
+                android:textColor="@android:color/black"
+                android:textColorHighlight="@android:color/darker_gray"
+                 />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.v4.widget.DrawerLayout>
+
+\end{verbatim}
 
 
 
